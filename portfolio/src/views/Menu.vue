@@ -1,30 +1,29 @@
 <template>
   <div>
     <ul class="menu">
-      <li v-for="page in pages" :key="page" class="selection" :id="page">
-        <router-link :to="`/${page}`">{{ page }}</router-link>
+      <li v-for="page in pages" :key="page">
+        <MenuItem :page="page"/>
       </li>
     </ul>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      pages: ["resume", "projects", "blog"]
-    }
-  }
-}
+<script setup>
+import { ref } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
+import MenuItem from '../components/MenuItem.vue'
+
+const pages = ref(["resume", "projects", "blog"])
+const router = useRouter()
 </script>
 
 <style scoped>
-li {
+ul, li {
   all: unset;
   display: block;
 }
-
-.selection {
-  background-color: aqua;
+.menu {
+  background-color: orange;
+  height: 80vh;
 }
 </style>
