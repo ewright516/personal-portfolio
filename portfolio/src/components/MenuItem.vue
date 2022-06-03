@@ -1,23 +1,35 @@
 <template>
-    <div @click="router.push(page)" class="selection" :id="page">
-        <img src="../assets/folder.png" alt="folder" class="image">
-        <p>{{ page }}</p>
-    </div>
+  <div @click="router.push(page)" class="selection" :id="page" ref="folder" :style="css">
+    <img src="../assets/folder.png" alt="folder" class="image">
+    <p>{{ page }}</p>
+  </div>
 </template>
 
 <script setup>
 import { ref } from '@vue/reactivity'
+import { computed, onMounted } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const props = defineProps({
-    page: String
+ page: String
 })
 
+const folder = ref(null)
 const position = ref({
-    x: 0,
-    y: 0,
+  x: 0,
+  y: 0,
 })
+const positionUser = ref({
+  x: 0,
+  y: 0,
+})
+const css = computed(() => {
+  return `left: ${position.value.x}px; top: ${position.value.y}px;`
+})
+
+
+
 </script>
 
 <style scoped>
