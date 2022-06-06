@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from '@vue/reactivity'
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
@@ -27,9 +27,6 @@ const positionUser = ref({
 const css = computed(() => {
   return `left: ${position.value.x}px; top: ${position.value.y}px;`
 })
-
-
-
 </script>
 
 <style scoped>
@@ -44,6 +41,10 @@ const css = computed(() => {
   background-color: paleturquoise;
 }
 .image {
-  width: 10rem
+  width: 10rem;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
 }
 </style>
