@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="menu" @mousemove="mousemove">
-      <li @click="router.push(page)" v-for="page in pages" :key="page" class="selection" :id="page">
+      <li v-for="page in pages" :key="page" class="selection" :id="page" @mousedown="mousedown" @mouseup="mouseup">
         <img src="../assets/folder.png" alt="folder" class="image">
         <p>{{ page }}</p>
       </li>
@@ -9,15 +9,46 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from '@vue/reactivity'
+<script>
 import { useRouter } from 'vue-router'
-
-const pages = ref(["resume", "projects", "blog"])
-const router = useRouter()
-
-const mousemove = (e) => {
-  console.log(e.clientX, e.clientY)
+export default {
+  data() {
+    return {
+      pages: ["resume", "projects", "blog"],
+      selected: null,
+      currentX: null,
+      currentY: null,
+    }
+  },
+  methods: {
+    mousemove(e) {
+      if (this.selected) {
+        let displX = e.clientX - this.currentX
+        let displY = e.clientY - this.currentY
+        console.log(displX, displY)
+        this.selected.style.left = `${parseInt(this.selected.style.left - "px") + displX}px`
+        this.selected.style.top = `${parseInt(this.selected.style.top - "px") + displY}px`
+        this.currentX = e.clientX
+        this.currentY = e.clientY
+      }
+    },
+    mousedown(e) {
+      this.selected = e.target
+      this.currentX = e.clientX
+      this.currentY = e.clientY
+      console.log(this.selected.style, "selected at", e.clientX, e.clientY)
+    },
+    mouseup(e) {
+      console.log(this.selected, "let go at", e.clientX, e.clientY)
+      this.selected = null
+      this.currentX = null
+      this.currentY = null
+    }
+  },
+  setup() {
+    const router = useRouter()
+    return { router }
+  }
 }
 </script>
 
@@ -30,8 +61,8 @@ ul, li {
   background-color: orange;
   width: 50rem;
   height: 50rem;
-  display: flex;
-  flex-flow: row nowrap;
+/*   display: flex;
+  flex-flow: row nowrap; */
   /* animation: spin 10s infinite linear; */
 }
 .selection {
@@ -42,6 +73,7 @@ ul, li {
   cursor: pointer;
   margin: 2rem 2rem;
   background-color: paleturquoise;
+  position: absolute;
   /* animation: spin 10s infinite linear reverse; */
 }
 .image {
@@ -52,6 +84,18 @@ ul, li {
   pointer-events: none;
 }
 #resume {
+  left: 300px;
+  top: 200px;
+}
+#projects {
+  left: 0px;
+  top: 200px;
+}
+#blog {
+  left: 150px;
+  top: 0px
+}
+/* #resume {
   align-self: center;
 }
 #projects {
@@ -65,5 +109,5 @@ ul, li {
   100% {
     transform: rotate(-360deg);
   }
-}
+} */
 </style>
