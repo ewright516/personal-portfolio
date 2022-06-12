@@ -54,15 +54,17 @@ export default {
       this.offsetY = null
     },
     singleClick(e) {
-      // e.path[1].children.forEach((ele) => {
-      //   ele.style.outline = ''
-      // })
-      // e.target.style.outline = "dashed thick"
       e.path[1].children[0].style.outline = ''
+      e.path[1].children[0].style.zIndex = ''
       e.path[1].children[1].style.outline = ''
+      e.path[1].children[1].style.zIndex = ''
       e.path[1].children[2].style.outline = ''
+      e.path[1].children[2].style.zIndex = ''
 
       e.target.style.outline = 'dashed thick'
+      e.target.style.zIndex = '9'
+
+      console.log(e.target.style)
     }
   },
   setup() {
@@ -80,8 +82,6 @@ ul, li {
 }
 .menu {
   background-color: orange;
-  width: 50rem;
-  height: 50rem;
 }
 .selection {
   width: fit-content;
@@ -89,9 +89,7 @@ ul, li {
   flex-flow: column nowrap;
   align-items: center;
   cursor: pointer;
-  background-color: paleturquoise;
   position: absolute;
-  /* outline: dashed thick; */
 }
 .image {
   width: 10rem;
@@ -99,17 +97,5 @@ ul, li {
   -webkit-user-select: none;
   user-select: none;
   pointer-events: none;
-}
-#resume {
-  left: 300px;
-  top: 200px;
-}
-#projects {
-  left: 0px;
-  top: 200px;
-}
-#blog {
-  left: 150px;
-  top: 0px
 }
 </style>
