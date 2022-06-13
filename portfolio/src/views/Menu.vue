@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 export default {
   data() {
@@ -18,15 +17,15 @@ export default {
       pages: [
         {
           name: "resume", 
-          css: "left: 300px; top: 200px;"
+          css: `left: ${Math.random()*700}px; top: ${Math.random()*700}px;`
         }, 
         {
           name: "projects", 
-          css: "left: 0px; top: 200px;"
+          css: `left: ${Math.random()*700}px; top: ${Math.random()*700}px;`
         },
         {
           name: "blog", 
-          css: "left: 150px; top: 0px;"
+          css: `left: ${Math.random()*700}px; top: ${Math.random()*700}px;`
         }],
       selected: null,
       offsetX: null,

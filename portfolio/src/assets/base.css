@@ -38,3 +38,7 @@ em,
 span {
   font-size: var(--h4);
 }
+
+.back {
+  font-size: 3rem;
+}
