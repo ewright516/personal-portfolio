@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ul class="menu" @mousemove="mousemove">
-      <li v-for="page in pages" @click="singleClick" @dblclick="router.push(page.name)" :key="page.name" class="selection" :id="page.name" @mousedown="mousedown" @mouseup="mouseup" :style="page.css" :ref="page.name">
+    <ul class="menu" @mousemove="mousemove" @click="outsideClick">
+      <li v-for="page in pages" @click="singleClick" @dblclick="switchPage(page.name)" :key="page.name" class="selection" :id="page.name" @mousedown="mousedown" @mouseup="mouseup" :style="page.css" :ref="page.name">
         <img src="../assets/folder.png" alt="folder" class="image">
         <p>{{ page.name }}</p>
       </li>
@@ -17,15 +17,15 @@ export default {
       pages: [
         {
           name: "resume", 
-          css: `left: ${Math.random()*700}px; top: ${Math.random()*700}px;`
+          css: `left: 330px; top: 160px;`
         }, 
         {
           name: "projects", 
-          css: `left: ${Math.random()*700}px; top: ${Math.random()*700}px;`
+          css: `left: 1000px; top: 185px;`
         },
         {
           name: "blog", 
-          css: `left: ${Math.random()*700}px; top: ${Math.random()*700}px;`
+          css: `left: 600px; top: 400px;`
         }],
       selected: null,
       offsetX: null,
@@ -64,23 +64,43 @@ export default {
       e.target.style.zIndex = '9'
 
       console.log(e.target.style)
+    },
+    outsideClick(e) {
+      e.path[0].children[0].style.outline = ''
+      e.path[0].children[1].style.outline = ''
+      e.path[0].children[2].style.outline = ''
     }
   },
   setup() {
     const router = useRouter()
 
-    return { router }
+    const switchPage = (path) => {
+      if (path === "projects") {
+        window.location = "https://www.github.com/ewright516"
+      } 
+      else router.push(path)
+    }
+
+    return { router, switchPage }
   }
 }
 </script>
 
 <style scoped>
+body {
+  background-image: url();
+}
+
 ul, li {
   all: unset;
   display: block;
 }
 .menu {
-  background-color: orange;
+  background-image: url(https://wallpaperaccess.com/full/90278.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
 }
 .selection {
   width: fit-content;
