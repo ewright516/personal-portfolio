@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Edwin Wright</h1>
     <ul class="menu" @mousemove="mousemove" @click="outsideClick">
       <li v-for="page in pages" @click="singleClick" @dblclick="switchPage(page.name)" :key="page.name" class="selection" :id="page.name" @mousedown="mousedown" @mouseup="mouseup" :style="page.css" :ref="page.name">
         <img src="../assets/folder.png" alt="folder" class="image">
@@ -17,16 +18,13 @@ export default {
       pages: [
         {
           name: "resume", 
-          css: `left: 330px; top: 160px;`
+          css: "left: 37px; top: 24px;"
         }, 
         {
           name: "projects", 
-          css: `left: 1000px; top: 185px;`
-        },
-        {
-          name: "blog", 
-          css: `left: 600px; top: 400px;`
-        }],
+          css: "left: 37px; top: 152px;"
+        }
+      ],
       selected: null,
       offsetX: null,
       offsetY: null
@@ -57,8 +55,6 @@ export default {
       e.path[1].children[0].style.zIndex = ''
       e.path[1].children[1].style.outline = ''
       e.path[1].children[1].style.zIndex = ''
-      e.path[1].children[2].style.outline = ''
-      e.path[1].children[2].style.zIndex = ''
 
       e.target.style.outline = 'dashed thick'
       e.target.style.zIndex = '9'
@@ -68,7 +64,6 @@ export default {
     outsideClick(e) {
       e.path[0].children[0].style.outline = ''
       e.path[0].children[1].style.outline = ''
-      e.path[0].children[2].style.outline = ''
     }
   },
   setup() {
@@ -90,13 +85,18 @@ export default {
 body {
   background-image: url();
 }
-
+h1 {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  color: white
+}
 ul, li {
   all: unset;
   display: block;
 }
 .menu {
-  background-image: url(https://wallpaperaccess.com/full/90278.jpg);
+  background-image: url(https://www.newegg.com/insider/wp-content/uploads/windows_xp_bliss-wide.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   width: 100vw;

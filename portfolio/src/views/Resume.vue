@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="flex-container">
     <router-link to="/" class="back">back</router-link>
-    <h1>resume</h1>
+    <h1>Resume</h1>
     <p>edwinw@nycstudents.net</p>
 
-    <div>
+    <div class="flex-container">
       <h2>Education</h2>
       <h3>Staten Island Technical High School, Staten Island, NY</h3>
       <h3>Cumulative Average: 99.43%, Expected Graduation Date: June 2024</h3>
     </div>
 
-    <div>
+    <div class="flex-container">
       <h2>Relevant Coursework</h2>
       <ul>
         <li>CAD</li>
@@ -18,14 +18,14 @@
       </ul>
     </div>
 
-    <div>
+    <div class="flex-container">
       <h2>Awards and Honors</h2>
       <ul>
         <li>2nd Place in Solar Car TI-84 Plus CE Python Competition</li>
       </ul>
     </div>
 
-    <div>
+    <div class="flex-container">
       <h2>Work/Volunteer Experience</h2>
       <h3>Botsitivity, Programmer, Staten Island, NY, 2021 - Present</h3>
       <ul>
@@ -34,7 +34,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="flex-container">
       <h2>Extracurricular Activities</h2>
       <h3>Chess Team, Member, Staten Island Technical High School, October 2021 - Present</h3>
       <ul>
@@ -43,7 +43,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="flex-container">
       <h2>Skills and Languages</h2>
       <ul>
         <li>AutoCAD Certified User</li>
@@ -59,5 +59,18 @@
 </script>
 
 <style scoped>
-
+.flex-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+ul {
+  margin-left: 3rem
+}
+.back {
+  align-self: flex-start
+}
+h1 {
+  margin-bottom: 5rem
+}
 </style>
